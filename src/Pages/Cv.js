@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { CV_DATA } from "../Data";
-import "./Cv.scss"
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import './Cv.scss';
+import { Link, Router } from 'react-router-dom';
 import 'react-range-slider-input/dist/style.css';
-import  Container  from "../Components/Container/Container"
+import Container from "../Components/Container/Container";
+import ReactPDF, { PDFViewer } from '@react-pdf/renderer';
+import MyDocument from '../Components/MyDocument/MyDocument';
 
 function Cv() {
   const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, personInfo, experience, education, skills, courses } = CV_DATA
+
+  ReactPDF.render(<MyDocument />, `C:/Users/aurim/Desktop/front end/example.pdf`);
 
   const contactsElement = tel || email || address ?
     <div className="person-data-box">
@@ -82,15 +87,21 @@ function Cv() {
       )}
     </div > : ""
 
-const coursesElement = courses ?
-<div className="person-data-box split">
-  <h2 className="title line">KURSAI</h2>
-  {courses.map((course, index) =>
-    <div key={index} className="person-data-content">
-      <span className="person-data-content"><span className="bold">{course.name}</span>{course.institution} {course.startDate} - {course.endDate}</span>
-    </div>
-  )}
-</div > : ""
+  const coursesElement = courses ?
+    <div className="person-data-box split">
+      <h2 className="title line">KURSAI</h2>
+      {courses.map((course, index) =>
+        <div key={index} className="person-data-content">
+          <span className="person-data-content"><span className="bold">{course.name}</span>{course.institution} {course.startDate} - {course.endDate}</span>
+        </div>
+      )}
+    </div > : ""
+
+  const [pdfReady, setPdfReady] = useState(false);
+
+  const handlePdfGenerate = () => {
+    setPdfReady(true);
+  };
 
   return (
     <Container>
@@ -113,6 +124,13 @@ const coursesElement = courses ?
           {coursesElement}
         </main>
       </div>
+      {pdfReady ? (
+        <PDFViewer>
+          <MyDocument />
+        </PDFViewer>
+      ) : (
+        <button onClick={handlePdfGenerate}>Generuoti PDF</button>
+      )}
     </Container>
   )
 }
