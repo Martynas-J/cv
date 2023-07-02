@@ -1,138 +1,161 @@
 import { useState } from 'react';
 import { CV_DATA } from "../Data";
 import './Cv.scss';
-import { Link, Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import 'react-range-slider-input/dist/style.css';
 import Container from "../Components/Container/Container";
-import ReactPDF, { PDFViewer } from '@react-pdf/renderer';
+import ReactPDF, { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
+import html2pdf from 'html2pdf.js';
+
 import MyDocument from '../Components/MyDocument/MyDocument';
 
 function Cv() {
   const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, personInfo, experience, education, skills, courses } = CV_DATA
 
-  ReactPDF.render(<MyDocument />, `C:/Users/aurim/Desktop/front end/example.pdf`);
-
-  const contactsElement = tel || email || address ?
+  const contactsElement = tel || email || address ? (
     <div className="person-data-box">
       <h2 className="title">KONTAKTAI</h2>
-      {tel ? <span className="person-data-content"><span className="bold">Telefono Numeris:</span>{tel}</span> : ""}
-      {email ? <span className="person-data-content"><span className="bold">El.paštas:</span>{email}</span> : ""}
-      {address ? <span className="person-data-content"><span className="bold">Adresas:</span>{address}</span> : ""}
-    </div> : ""
-  const aboutMeElement =
+      {tel && <span className="person-data-content"><span className="bold">Telefono Numeris:</span>{tel}</span>}
+      {email && <span className="person-data-content"><span className="bold">El.paštas:</span>{email}</span>}
+      {address && <span className="person-data-content"><span className="bold">Adresas:</span>{address}</span>}
+    </div>
+  ) : null;
+
+  const aboutMeElement = aboutMe ? (
     <div className="person-data-box">
       <h2 className="title">APIE MANE</h2>
       <span className="person-data-content">{aboutMe}</span>
     </div>
+  ) : null;
 
-  const linksElement = links ?
+  const linksElement = links ? (
     <div className="person-data-box">
       <h2 className="title">NUORODOS</h2>
-      {links.map((link, index) =>
-        < Router key={index}>
+      {links.map((link, index) => (
+        <Router key={index}>
           <Link className="link" target="blank" to={link.url}><span className="bold">{link.name}:</span>{link.url}</Link>
         </Router>
-      )}
-    </div > : ""
+      ))}
+    </div>
+  ) : null;
 
-  const hobbiesElement = hobbies ?
+  const hobbiesElement = hobbies ? (
     <div className="person-data-box">
       <h2 className="title">POMĖGIAI</h2>
-      <span>{hobbies.join(", ")}</span>
-    </div > : ""
+      <span className="person-data-content" >{hobbies.join(", ")}</span>
+    </div>
+  ) : null;
 
-  const driverLicensesElement = driverLicenses ?
+  const driverLicensesElement = driverLicenses ? (
     <div className="person-data-box">
       <h2 className="title">VAIRUOTOJO PAŽYMĖJIMAS</h2>
-      <span>
+      <span className="person-data-content">
         <span className="bold">Vairuotojo pažymėjimo {driverLicenses.length > 1 ? "kategorijos" : "kategorija"}
         </span>{driverLicenses.join(", ")}
       </span>
-    </div > : ""
+    </div>
+  ) : null;
 
-  const personInfoElement = personInfo ?
+  const personInfoElement = personInfo ? (
     <div className="person-data-box">
       <h2 className="title">ASMENINĖ INFORMACIJA</h2>
-      {personInfo.map((item, index) =>
+      {personInfo.map((item, index) => (
         <span key={index} className="person-data-content"><span className="bold">{item.title}</span>{item.value}</span>
-      )}
-    </div > : ""
+      ))}
+    </div>
+  ) : null;
 
-  const experienceElement = experience ?
+  const experienceElement = experience ? (
     <div className="person-data-box">
       <h2 className="title line">DARBO PATIRTIS</h2>
       <span>{experience}</span>
-    </div > : ""
+    </div>
+  ) : null;
 
-  const educationElement = education ?
+  const educationElement = education ? (
     <div className="person-data-box split">
       <h2 className="title line">IŠSILAVINIMAS</h2>
-      {education.map((item, index) =>
+      {education.map((item, index) => (
         <div key={index} className="person-data-content odd">
           <span className="bold">{item.title}</span>
           {item.place}, {item.institution} {item.year}
           <p>{item.describe}</p>
         </div>
-      )}
-    </div > : ""
+      ))}
+    </div>
+  ) : null;
 
-  const skillsElement = skills ?
+  const skillsElement = skills ? (
     <div className="person-data-box split">
       <h2 className="title line">ĮGUDŽIAI</h2>
-      {skills.map((skill, index) =>
+      {skills.map((skill, index) => (
         <div key={index} className="person-data-content">
           <span className="bold">{skill.title}</span>
           <input type="range" value={skill.lvl} max="10" readOnly></input>
         </div>
-      )}
-    </div > : ""
+      ))}
+    </div>
+  ) : null;
 
-  const coursesElement = courses ?
+  const coursesElement = courses ? (
     <div className="person-data-box split">
       <h2 className="title line">KURSAI</h2>
-      {courses.map((course, index) =>
+      {courses.map((course, index) => (
         <div key={index} className="person-data-content">
           <span className="person-data-content"><span className="bold">{course.name}</span>{course.institution} {course.startDate} - {course.endDate}</span>
         </div>
-      )}
-    </div > : ""
+      ))}
+    </div>
+  ) : null;
 
   const [pdfReady, setPdfReady] = useState(false);
 
+  // const handlePdfGenerate = () => {
+  //   setPdfReady(true);
+  // };
   const handlePdfGenerate = () => {
-    setPdfReady(true);
+    const element = document.querySelector('.container'); // Pasirinkite elementą, kurį norite konvertuoti į PDF
+    html2pdf().from(element).save(); // Konvertuoti ir išsaugoti PDF
   };
 
   return (
-    <Container>
-      <header>
-        {name}
-      </header>
-      <div className="wrapper">
-        <aside className="sidebar-content">
-          {contactsElement}
-          {aboutMe && aboutMeElement}
-          {linksElement}
-          {hobbiesElement}
-          {driverLicensesElement}
-          {personInfoElement}
-        </aside>
-        <main className="main-content">
-          {experienceElement}
-          {educationElement}
-          {skillsElement}
-          {coursesElement}
-        </main>
-      </div>
-      {pdfReady ? (
-        <PDFViewer>
-          <MyDocument />
-        </PDFViewer>
-      ) : (
-        <button onClick={handlePdfGenerate}>Generuoti PDF</button>
-      )}
-    </Container>
-  )
+    <>
+      <Container>
+        <header>{name}</header>
+        <div className="wrapper">
+          <aside className="sidebar-content">
+            {contactsElement}
+            {aboutMeElement}
+            {linksElement}
+            {hobbiesElement}
+            {driverLicensesElement}
+            {personInfoElement}
+          </aside>
+          <main className="main-content">
+            {experienceElement}
+            {educationElement}
+            {skillsElement}
+            {coursesElement}
+            {/* {pdfReady ? (
+            <div>
+              <PDFViewer>
+                <MyDocument />
+              </PDFViewer>
+              <PDFDownloadLink document={<MyDocument />} fileName="example.pdf">
+                {({ blob, url, loading, error }) =>
+                  loading ? 'Kraunama...' : 'Parsisiųsti PDF'
+                }
+              </PDFDownloadLink>
+            </div>
+          ) : (
+            <button onClick={handlePdfGenerate}>Generuoti PDF</button>
+          )} */}
+          </main>
+        </div>
+      </Container>
+      <button onClick={handlePdfGenerate}>Generuoti PDF</button>
+    </>
+  );
 }
 
 export default Cv;
