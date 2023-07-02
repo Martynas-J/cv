@@ -1,0 +1,13 @@
+
+@mixin mob950 {
+    @media screen and (max-width: 950px) {
+        @content;
+    }
+}
+@mixin mob580 {
+    @media screen and (max-width: 580px) {
+        @content;
+    }
+}
+
+
