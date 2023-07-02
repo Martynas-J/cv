@@ -23,7 +23,7 @@ export const CV_DATA = {
         },
         {
             title: "Tautybė",
-            value: "Lietyvis",
+            value: "Lietuvis",
         }, {
             title: "Šeimyninė padėtis",
             value: "Vedęs",
