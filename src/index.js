@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Cv from './Cv';
+import Cv from './Pages/Cv';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

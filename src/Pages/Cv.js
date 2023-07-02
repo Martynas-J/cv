@@ -1,8 +1,8 @@
-import { CV_DATA } from "./Data";
+import { CV_DATA } from "../Data";
 import "./Cv.scss"
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import 'react-range-slider-input/dist/style.css';
-import  Container  from "./Components/Container/Container"
+import  Container  from "../Components/Container/Container"
 
 function Cv() {
   const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, personInfo, experience, education, skills, courses } = CV_DATA
