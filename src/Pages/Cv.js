@@ -7,6 +7,7 @@ import Container from "../Components/Container/Container";
 import ReactPDF, { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import html2pdf from 'html2pdf.js';
 
+
 import MyDocument from '../Components/MyDocument/MyDocument';
 
 function Cv() {
@@ -110,13 +111,13 @@ function Cv() {
 
   const [pdfReady, setPdfReady] = useState(false);
 
-  // const handlePdfGenerate = () => {
-  //   setPdfReady(true);
-  // };
   const handlePdfGenerate = () => {
-    const element = document.querySelector('.container'); // Pasirinkite elementą, kurį norite konvertuoti į PDF
-    html2pdf().from(element).save(); // Konvertuoti ir išsaugoti PDF
+    setPdfReady(true);
   };
+  // const handlePdfGenerate = () => {
+  //   const element = document.querySelector('.container'); // Pasirinkite elementą, kurį norite konvertuoti į PDF
+  //   html2pdf().from(element).save(); // Konvertuoti ir išsaugoti PDF
+  // };
 
   return (
     <>
@@ -136,24 +137,23 @@ function Cv() {
             {educationElement}
             {skillsElement}
             {coursesElement}
-            {/* {pdfReady ? (
-            <div>
-              <PDFViewer>
-                <MyDocument />
-              </PDFViewer>
-              <PDFDownloadLink document={<MyDocument />} fileName="example.pdf">
+            <div className='pdf-viewer'>
+              {pdfReady ? (
+                <PDFViewer  width={"100%"} height={"100%"}>
+                  <MyDocument data={CV_DATA} />
+                </PDFViewer>
+              ) : (
+                <button onClick={handlePdfGenerate}>Generuoti PDF</button>
+              )}
+              <PDFDownloadLink document={<MyDocument data={CV_DATA} />} fileName="cv.pdf">
                 {({ blob, url, loading, error }) =>
                   loading ? 'Kraunama...' : 'Parsisiųsti PDF'
                 }
               </PDFDownloadLink>
             </div>
-          ) : (
-            <button onClick={handlePdfGenerate}>Generuoti PDF</button>
-          )} */}
           </main>
         </div>
       </Container>
-      <button onClick={handlePdfGenerate}>Generuoti PDF</button>
     </>
   );
 }

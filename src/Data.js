@@ -1,5 +1,5 @@
 export const CV_DATA = {
-    name: "Martynas Janušauksas",
+    name: "Martynas Janušauskas",
     tel: "+37064191986",
     email: "janusauskas.martynas1@gmail.com",
     address: "Jūros gatvė 6, Šaukų mst., Kelmės raj., Lietuva, 86383",
