@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CV_DATA } from "../Data";
 import './Cv.scss';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 import 'react-range-slider-input/dist/style.css';
 import Container from "../Components/Container/Container";
 import ReactPDF, { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
@@ -12,6 +12,8 @@ import MyDocument from '../Components/MyDocument/MyDocument';
 
 function Cv() {
   const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, personInfo, experience, education, skills, courses } = CV_DATA
+
+  const navigate = useNavigate()
 
   const contactsElement = tel || email || address ? (
     <div className="person-data-box">
@@ -33,9 +35,7 @@ function Cv() {
     <div className="person-data-box">
       <h2 className="title">NUORODOS</h2>
       {links.map((link, index) => (
-        <Router key={index}>
-          <Link className="link" target="blank" to={link.url}><span className="bold">{link.name}:</span>{link.url}</Link>
-        </Router>
+        <Link key={index} className="link" target="blank" to={link.url}><span className="bold">{link.name}:</span>{link.url}</Link>
       ))}
     </div>
   ) : null;
@@ -114,6 +114,10 @@ function Cv() {
   const handlePdfGenerate = () => {
     setPdfReady(true);
   };
+  const FormHandler = () => {
+    navigate(`/form`);
+  };
+
   // const handlePdfGenerate = () => {
   //   const element = document.querySelector('.container'); // Pasirinkite elementą, kurį norite konvertuoti į PDF
   //   html2pdf().from(element).save(); // Konvertuoti ir išsaugoti PDF
@@ -137,9 +141,10 @@ function Cv() {
             {educationElement}
             {skillsElement}
             {coursesElement}
+            <button onClick={FormHandler}>Įvesti savo duomenis</button>
             <div className='pdf-viewer'>
               {pdfReady ? (
-                <PDFViewer  width={"100%"} height={"100%"}>
+                <PDFViewer width={"100%"} height={"100%"}>
                   <MyDocument data={CV_DATA} />
                 </PDFViewer>
               ) : (

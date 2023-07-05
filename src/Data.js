@@ -76,7 +76,8 @@ export const CV_DATA = {
             institution: "CodeAcademy",
             startDate: "2023 kov.",
             endDate: "2023 bir."
-        }
+        },
+        
     ]
 
 }
