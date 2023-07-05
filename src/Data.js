@@ -24,12 +24,13 @@ export const CV_DATA = {
         {
             title: "Tautybė",
             value: "Lietuvis",
-        }, {
+        },
+        {
             title: "Šeimyninė padėtis",
             value: "Vedęs",
         }
     ],
-    experience: "-",
+    experience: [],
     education: [
         {
             title: "Bakalauras",
