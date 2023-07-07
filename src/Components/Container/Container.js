@@ -1,4 +1,4 @@
-import './Container.css';
+import './Container.scss';
 
 function Container({ classes, children }) {
   const addedClasses = classes ? classes : '';
