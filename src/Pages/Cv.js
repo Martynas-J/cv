@@ -129,30 +129,31 @@ function Cv() {
   return (
     <>
       <Container>
+        <div className='pdf-control-wrapper'>
+          <button className='button' onClick={FormHandler}>Įvesti naujus duomenis</button>
+          <button className='button' onClick={deleteHandler}>Ištrinti duomenis</button>
+          <button className='button' onClick={editHandler}>Keisti duomenis</button>
+
+          {pdfReady ? (
+            <div className='pdf-viewer'>
+              <button className="pdf-viewer-exit" onClick={() => setPdfReady(false)}> X</button>
+              <PDFViewer width={"100%"} height={"100%"}>
+                <MyDocument data={storedData || CV_DATA} />
+              </PDFViewer>
+            </div>
+          ) : (
+            <button className='button' onClick={handlePdfGenerate}>Generuoti PDF</button>
+          )}
+
+          <PDFDownloadLink document={<MyDocument data={storedData || CV_DATA} />} fileName="cv.pdf">
+            {({ blob, url, loading, error }) =>
+              loading ? 'Kraunama...' : 'Parsisiųsti PDF'
+            }
+
+          </PDFDownloadLink>
+        </div>
         <header>
-          <div className='pdf-control-wrapper'>
-            <button className='button' onClick={FormHandler}>Įvesti naujus duomenis</button>
-            <button className='button' onClick={deleteHandler}>Ištrinti duomenis</button>
-            <button className='button' onClick={editHandler}>Keisti duomenis</button>
 
-            {pdfReady ? (
-              <div className='pdf-viewer'>
-                <button className="pdf-viewer-exit" onClick={() => setPdfReady(false)}> X</button>
-                <PDFViewer width={"100%"} height={"100%"}>
-                  <MyDocument data={storedData || CV_DATA} />
-                </PDFViewer>
-              </div>
-            ) : (
-              <button className='button' onClick={handlePdfGenerate}>Generuoti PDF</button>
-            )}
-
-            <PDFDownloadLink document={<MyDocument data={storedData || CV_DATA} />} fileName="cv.pdf">
-              {({ blob, url, loading, error }) =>
-                loading ? 'Kraunama...' : 'Parsisiųsti PDF'
-              }
-
-            </PDFDownloadLink>
-          </div>
           {name}
         </header>
         <div className="wrapper">
