@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Cv />} />
         <Route path='/form' element={<FormPage />} />
+        <Route path='/form/:edit' element={<FormPage />} />
 
         <Route path='*' element={
           <div>

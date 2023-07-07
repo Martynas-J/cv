@@ -1,42 +1,41 @@
 import { useEffect, useState } from "react";
-
-import "./Formik.scss"
+import "./Formik.scss";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const UniversalForm = ({ inputs, onAddData, newData }) => {
     const [formValues, setFormValues] = useState({});
     const [errors, setErrors] = useState({});
     const [buttonText, setButtonText] = useState("Add");
 
-
     useEffect(() => {
         if (newData) {
-            setButtonText("Save")
+            setButtonText("Save");
             Object.keys(newData).forEach((key) => {
                 setFormValues((prevValues) => ({ ...prevValues, [key]: newData[key] }));
             });
         }
     }, [newData]);
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (!value || value[0] === ' ') {
-            setErrors((prevErrors) => ({ ...prevErrors, [name]: 'Invalid' }));
+        if (!value || value.trim() === "") {
+            setErrors((prevErrors) => ({ ...prevErrors, [name]: "Invalid" }));
         } else {
-            setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
+            setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
         }
         setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const hasErrors = Object.values(errors).some((error) => error !== '');
+        const hasErrors = Object.values(errors).some((error) => error !== "");
         if (hasErrors) {
-            toast.error("Empty or incorrect input", { autoClose: 5000 })
+            toast.error("Empty or incorrect input", { autoClose: 5000 });
         } else {
             setFormValues({});
             setErrors({});
-            onAddData(formValues)
+            onAddData(formValues);
         }
     };
 
@@ -44,7 +43,7 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
         <div className="photo-form-wrapper">
             <form onSubmit={handleSubmit}>
                 {inputs.map((input, index) => {
-                    const { type, name, label, options, required } = input;
+                    const { type, name, label, options, required, cols, rows } = input;
                     return (
                         <div key={index}>
                             <label htmlFor={name} className={errors[name] ? "textErr" : ""}>
@@ -66,6 +65,17 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
                                         </option>
                                     ))}
                                 </select>
+                            ) : type === "textarea" ? (
+                                <textarea
+                                    name={name}
+                                    id={name}
+                                    onChange={handleChange}
+                                    value={formValues[name] || ""}
+                                    required={required}
+                                    rows={rows}
+                                    cols={cols}
+                                    className={errors[name] ? "inputErr" : ""}
+                                />
                             ) : (
                                 <input
                                     type={type}
@@ -77,15 +87,15 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
                                     className={errors[name] ? "inputErr" : ""}
                                 />
                             )}
-                            {errors[name] && (
-                                <div className="textErr">{errors[name]}</div>
-                            )}
+                            {errors[name] && <div className="textErr">{errors[name]}</div>}
                         </div>
                     );
                 })}
                 <button type="submit">{buttonText}</button>
+                <Link to={"/"}>Atgal</Link>
             </form>
         </div>
     );
 };
-export default UniversalForm
+
+export default UniversalForm;

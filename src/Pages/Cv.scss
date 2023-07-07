@@ -1,9 +1,37 @@
 @use "../Components/Elements/responsive.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 body {
+  .pdf-control-wrapper {
+    font-size: 14px;
+    letter-spacing: normal;
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 10px;
+    .button {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    a {
+      color: rgb(0, 0, 0);
+    }
+  }
   .pdf-viewer {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 100px;
+    height: 500px;
+    width: 95%;
+    background-color: rgb(202, 202, 202);
+    .pdf-viewer-exit {
+      background-color: unset;
+      border-radius: 5px;
+      color: red;
+    }
   }
   .bold {
     font-weight: 700;

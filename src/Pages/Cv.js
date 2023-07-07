@@ -1,17 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CV_DATA } from "../Data";
 import './Cv.scss';
-import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'react-range-slider-input/dist/style.css';
 import Container from "../Components/Container/Container";
-import ReactPDF, { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
-import html2pdf from 'html2pdf.js';
+import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 
 
 import MyDocument from '../Components/MyDocument/MyDocument';
 
 function Cv() {
-  const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, personInfo, experience, education, skills, courses } = CV_DATA
+
+  const [storedData, setStoredData] = useState(JSON.parse(localStorage.getItem("data")));
+  const [pdfReady, setPdfReady] = useState(false);
+
+  const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, personInfo, experience, education, skills, courses } = storedData || CV_DATA
 
   const navigate = useNavigate()
 
@@ -109,24 +112,49 @@ function Cv() {
     </div>
   ) : null;
 
-  const [pdfReady, setPdfReady] = useState(false);
-
   const handlePdfGenerate = () => {
     setPdfReady(true);
   };
   const FormHandler = () => {
     navigate(`/form`);
   };
-
-  // const handlePdfGenerate = () => {
-  //   const element = document.querySelector('.container'); // Pasirinkite elementą, kurį norite konvertuoti į PDF
-  //   html2pdf().from(element).save(); // Konvertuoti ir išsaugoti PDF
-  // };
+  const deleteHandler = () => {
+    localStorage.removeItem("data");
+    setStoredData("")
+  };
+  const editHandler = () => {
+    navigate(`/form/edit`);
+  };
 
   return (
     <>
       <Container>
-        <header>{name}</header>
+        <header>
+          <div className='pdf-control-wrapper'>
+            <button className='button' onClick={FormHandler}>Įvesti naujus duomenis</button>
+            <button className='button' onClick={deleteHandler}>Ištrinti duomenis</button>
+            <button className='button' onClick={editHandler}>Keisti duomenis</button>
+
+            {pdfReady ? (
+              <div className='pdf-viewer'>
+                <button className="pdf-viewer-exit" onClick={() => setPdfReady(false)}> X</button>
+                <PDFViewer width={"100%"} height={"100%"}>
+                  <MyDocument data={storedData || CV_DATA} />
+                </PDFViewer>
+              </div>
+            ) : (
+              <button className='button' onClick={handlePdfGenerate}>Generuoti PDF</button>
+            )}
+
+            <PDFDownloadLink document={<MyDocument data={storedData || CV_DATA} />} fileName="cv.pdf">
+              {({ blob, url, loading, error }) =>
+                loading ? 'Kraunama...' : 'Parsisiųsti PDF'
+              }
+
+            </PDFDownloadLink>
+          </div>
+          {name}
+        </header>
         <div className="wrapper">
           <aside className="sidebar-content">
             {contactsElement}
@@ -141,21 +169,7 @@ function Cv() {
             {educationElement}
             {skillsElement}
             {coursesElement}
-            <button onClick={FormHandler}>Įvesti savo duomenis</button>
-            <div className='pdf-viewer'>
-              {pdfReady ? (
-                <PDFViewer width={"100%"} height={"100%"}>
-                  <MyDocument data={CV_DATA} />
-                </PDFViewer>
-              ) : (
-                <button onClick={handlePdfGenerate}>Generuoti PDF</button>
-              )}
-              <PDFDownloadLink document={<MyDocument data={CV_DATA} />} fileName="cv.pdf">
-                {({ blob, url, loading, error }) =>
-                  loading ? 'Kraunama...' : 'Parsisiųsti PDF'
-                }
-              </PDFDownloadLink>
-            </div>
+
           </main>
         </div>
       </Container>
