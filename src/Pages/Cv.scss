@@ -1,6 +1,10 @@
 @use "../Components/Elements/responsive.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 body {
+  .form-inside-wrapper{
+    padding-left: 50px;
+    font-size: 14px;
+  }
   .pdf-control-wrapper {
     display: flex;
     justify-content: center;

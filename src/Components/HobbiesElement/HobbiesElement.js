@@ -7,7 +7,7 @@ const HobbiesElement = ({ hobbies }) => {
         <View style={styles.section}>
             <Text style={styles.title}>POMĖGIAI</Text>
             {hobbies && (
-                <Text style={styles.content}>{hobbies.join(', ')}</Text>
+                <Text style={styles.content}>{hobbies}</Text>
             )}
         </View>
     )

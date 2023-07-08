@@ -14,14 +14,14 @@ function Cv() {
   const [storedData, setStoredData] = useState(JSON.parse(localStorage.getItem("data")));
   const [pdfReady, setPdfReady] = useState(false);
 
-  const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, personInfo, experience, education, skills, courses } = storedData || CV_DATA
+  const { name, phone, email, address, aboutMe, links, hobbies, driverLicenses, birthday, nationality, maritalStatus, experience, education, skills, courses } = storedData || CV_DATA
 
   const navigate = useNavigate()
 
-  const contactsElement = tel || email || address ? (
+  const contactsElement = phone || email || address ? (
     <div className="person-data-box">
       <h2 className="title">KONTAKTAI</h2>
-      {tel && <span className="person-data-content"><span className="bold">Telefono Numeris:</span>{tel}</span>}
+      {phone && <span className="person-data-content"><span className="bold">Telefono Numeris:</span>{phone}</span>}
       {email && <span className="person-data-content"><span className="bold">El.paštas:</span>{email}</span>}
       {address && <span className="person-data-content"><span className="bold">Adresas:</span>{address}</span>}
     </div>
@@ -46,7 +46,7 @@ function Cv() {
   const hobbiesElement = hobbies ? (
     <div className="person-data-box">
       <h2 className="title">POMĖGIAI</h2>
-      <span className="person-data-content" >{hobbies.join(", ")}</span>
+      <span className="person-data-content" >{hobbies}</span>
     </div>
   ) : null;
 
@@ -55,17 +55,24 @@ function Cv() {
       <h2 className="title">VAIRUOTOJO PAŽYMĖJIMAS</h2>
       <span className="person-data-content">
         <span className="bold">Vairuotojo pažymėjimo {driverLicenses.length > 1 ? "kategorijos" : "kategorija"}
-        </span>{driverLicenses.join(", ")}
+        </span>{driverLicenses}
       </span>
     </div>
   ) : null;
 
-  const personInfoElement = personInfo ? (
+  const personalInfoElement = birthday || nationality || maritalStatus ? (
     <div className="person-data-box">
       <h2 className="title">ASMENINĖ INFORMACIJA</h2>
-      {personInfo.map((item, index) => (
-        <span key={index} className="person-data-content"><span className="bold">{item.title}</span>{item.value}</span>
-      ))}
+      <span className="person-data-content">
+        <span className="bold">Gimimo data: </span>{birthday && birthday}
+      </span>
+      <span className="person-data-content">
+        <span className="bold">Tautybė: </span>{nationality && nationality}
+      </span>
+      <span className="person-data-content">
+        <span className="bold">Šeimyninė padėtis: </span>{maritalStatus && maritalStatus}
+      </span>
+
     </div>
   ) : null;
 
@@ -149,7 +156,6 @@ function Cv() {
             {({ blob, url, loading, error }) =>
               loading ? 'Kraunama...' : 'Parsisiųsti PDF'
             }
-
           </PDFDownloadLink>
         </div>
         <header>
@@ -163,7 +169,7 @@ function Cv() {
             {linksElement}
             {hobbiesElement}
             {driverLicensesElement}
-            {personInfoElement}
+            {personalInfoElement}
           </aside>
           <main className="main-content">
             {experienceElement}

@@ -10,7 +10,7 @@ const DriverLicensesElement = ({ driverLicenses }) => {
                 <Text style={styles.content}>
                     Vairuotojo pažymėjimo{' '}
                     {driverLicenses.length > 1 ? 'kategorijos' : 'kategorija'}:{' '}
-                    {driverLicenses.join(', ')}
+                    {driverLicenses}
                 </Text>
             )}
         </View>

@@ -1,6 +1,6 @@
 export const CV_DATA = {
     name: "Martynas Janušauskas",
-    tel: "+37064191986",
+    phone: "+37064191986",
     email: "janusauskas.martynas1@gmail.com",
     address: "Jūros gatvė 6, Šaukų mst., Kelmės raj., Lietuva, 86383",
     aboutMe: "Esu pareigingas, sąžiningas, nuoširdus, tvarkingas. Sugebu greitai perprasti naujas užduotis. Moku dirbti ir komandoje, ir individualiai.",
@@ -14,23 +14,12 @@ export const CV_DATA = {
             url: "https://github.com/Martynas-J",
         }
     ],
-    hobbies: ["Krepšinis", "Tinklinis"],
-    driverLicenses: ["B"],
-    personInfo: [
-        {
-            title: "Gimimo data",
-            value: "1990-11-02",
-        },
-        {
-            title: "Tautybė",
-            value: "Lietuvis",
-        },
-        {
-            title: "Šeimyninė padėtis",
-            value: "Vedęs",
-        }
-    ],
-    experience: [],
+    hobbies: "Krepšinis, Tinklinis",
+    driverLicenses: "B",
+    birthday: "1990-11-02",
+    nationality: "Lietuvis",
+    maritalStatus: "Vedęs",
+    experience: ["Esu dirbęs"],
     education: [
         {
             title: "Bakalauras",
@@ -77,7 +66,7 @@ export const CV_DATA = {
             startDate: "2023 kov.",
             endDate: "2023 bir."
         },
-        
+
     ]
 
 }

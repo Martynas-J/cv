@@ -36,11 +36,12 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
             setFormValues({});
             setErrors({});
             onAddData(formValues);
+            setButtonText("Add");
         }
     };
 
     return (
-        <div className="photo-form-wrapper">
+        <div className="form">
             <form onSubmit={handleSubmit}>
                 {inputs.map((input, index) => {
                     const { type, name, label, options, required, cols, rows } = input;
