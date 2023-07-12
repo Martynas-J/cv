@@ -18,7 +18,7 @@ import CoursesElement from '../CoursesElement/CoursesElement';
 const MyDocument = ({ data }) => {
     Font.register({ family: 'Bold', src: Bold });
     Font.register({ family: 'Regular', src: Regular });
-    const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, personInfo, experience, education, skills, courses } = data
+    const { name, tel, email, address, aboutMe, links, hobbies, driverLicenses, birthday, nationality, maritalStatus, experience, education, skills, courses } = data
 
     return (
         <Document>
@@ -32,7 +32,7 @@ const MyDocument = ({ data }) => {
                         {links && links.length !== 0 && <LinksElement links={links} />}
                         {hobbies && hobbies.length !== 0 && <HobbiesElement hobbies={hobbies} />}
                         {driverLicenses && driverLicenses.length !== 0 && <DriverLicensesElement driverLicenses={driverLicenses} />}
-                        {personInfo && personInfo.length !== 0 && < PersonInfoElement personInfo={personInfo} />}
+                        {birthday || nationality || maritalStatus ? < PersonInfoElement personInfo={{ birthday, nationality, maritalStatus }} /> : ""}
                     </View>
 
                     <View style={styles.RightSection}>
@@ -41,7 +41,7 @@ const MyDocument = ({ data }) => {
                         {skills && skills.length !== 0 && <SkillsElement skills={skills} />}
                         {courses && courses.length !== 0 && <CoursesElement courses={courses} />}
                     </View>
-                    
+
                 </View>
             </Page>
         </Document >

@@ -76,10 +76,10 @@ function Cv() {
     </div>
   ) : null;
 
-  const experienceElement = experience ? (
-    <div className="person-data-box">
+  const experienceElement = experience.length > 0 ? (
+    <div className="person-data-box split">
       <h2 className="title line">DARBO PATIRTIS</h2>
-      <span>{experience}</span>
+      {experience.map((item, index) => <span key={index}>{item}</span>)}
     </div>
   ) : null;
 

@@ -27,8 +27,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         textTransform: 'uppercase',
         fontFamily: 'Bold',
-        display: 'flex',
-        wrap: 'wrap',
+        display: "block",
     },
     title2: {
         fontSize: 15,

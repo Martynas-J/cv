@@ -2,7 +2,7 @@ export const CV_DATA = {
     name: "Martynas Janušauskas",
     phone: "+37064191986",
     email: "janusauskas.martynas1@gmail.com",
-    address: "Jūros gatvė 6, Šaukų mst., Kelmės raj., Lietuva, 86383",
+    address: "Jūros gatvė 6, Šaukų mstl., Kelmės raj., Lietuva, 86383",
     aboutMe: "Esu pareigingas, sąžiningas, nuoširdus, tvarkingas. Sugebu greitai perprasti naujas užduotis. Moku dirbti ir komandoje, ir individualiai.",
     links: [
         {
@@ -19,7 +19,7 @@ export const CV_DATA = {
     birthday: "1990-11-02",
     nationality: "Lietuvis",
     maritalStatus: "Vedęs",
-    experience: ["Esu dirbęs"],
+    experience: [""],
     education: [
         {
             title: "Bakalauras",
@@ -40,23 +40,23 @@ export const CV_DATA = {
     skills: [
         {
             title: "HTML",
-            lvl: 7,
+            lvl: 6,
         },
         {
             title: "CSS",
-            lvl: 7,
+            lvl: 6,
         },
         {
             title: "SCSS",
-            lvl: 7,
+            lvl: 6,
         },
         {
             title: "JavaScript",
-            lvl: 6,
+            lvl: 5,
         },
         {
             title: "REACT",
-            lvl: 6,
+            lvl: 5,
         },
     ],
     courses: [

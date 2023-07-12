@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import UniversalForm from '../Form/UniversalForm';
 
-const ExperienceInput = () => {
+const ExperienceInput = ({ onExperience }) => {
     const [editExperience, setEditExperience] = useState()
 
-    const localStorageData = JSON.parse(localStorage.getItem("experience")) || ""
-    const [experience, setExperience] = useState(localStorageData)
+    const localStorageData = JSON.parse(localStorage.getItem("data")) || ""
+    const [experience, setExperience] = useState(localStorageData.experience ? localStorageData.experience : "")
 
     const inputs = [
         { label: 'Patirtis', type: 'text', name: 'experience', value: '', required: false },
@@ -22,17 +22,21 @@ const ExperienceInput = () => {
             setEditExperience("")
         }
         setExperience(updatedExperience);
-        localStorage.setItem("experience", JSON.stringify(updatedExperience));
+        onExperience(updatedExperience);
     }
     const deleteHandler = (index) => {
-        const deletedExperience = experience.filter(item => item !== experience[index])
+        const deletedExperience = experience.filter((item, i) => i !== index);
         setExperience(deletedExperience);
-        localStorage.setItem("experience", JSON.stringify(deletedExperience));
-    }
+
+        const updatedData = { ...localStorageData, experience: deletedExperience };
+        localStorage.setItem("data", JSON.stringify(updatedData));
+        onExperience(deletedExperience)
+    };
+
     const editHandler = (index) => {
-        const editExperience = experience.find(item => item === experience[index])
-        setEditExperience({ experience: editExperience, index })
-    }
+        const editExperience = experience.find((item, i) => i === index);
+        setEditExperience({ experience: editExperience, index });
+    };
 
     return (
         <div className="form-inside-wrapper">

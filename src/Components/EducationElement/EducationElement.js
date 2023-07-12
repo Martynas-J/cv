@@ -17,7 +17,7 @@ const EducationElement = ({ education }) => {
                                 </Text>
                                 <Text>{item.describe}</Text>
                             </View>
-                        </View>
+                        </View> 
                     ))}
             </View>
         </View>
