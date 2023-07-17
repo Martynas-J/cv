@@ -3,14 +3,14 @@ import React from 'react'
 import styles from "../MyDocument/styles";
 
 const ContactsElement = ({ contactsData }) => {
-    const { name, tel, email, address } = contactsData
+    const { phone, email, address } = contactsData
     return (
         <View style={styles.section}>
             <Text style={styles.title}>KONTAKTAI</Text>
-            {tel && (
+            {phone && (
                 <View>
                     <Text style={styles.boldText}> Telefono Numeris:</Text>
-                    <Text style={styles.content}>{tel}</Text>
+                    <Text style={styles.content}>{phone}</Text>
                 </View>
             )}
             {email && (

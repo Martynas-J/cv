@@ -3,12 +3,14 @@ import Container from "../../Components/Container/Container";
 import { useNavigate, useParams } from "react-router-dom";
 import ExperienceInput from "../../Components/ExperienceInput/ExperienceInput";
 import { useState } from "react";
+import EducationInput from "../../Components/EducationInput/EducationInput";
 
 const FormPage = () => {
     const { edit } = useParams()
     const navigate = useNavigate()
 
-    const [experience, setExperience] = useState("")
+    const [experience, setExperience] = useState([])
+    const [education, setEducation] = useState([])
 
     const storedData = JSON.parse(localStorage.getItem("data"));
     const inputs = [
@@ -26,14 +28,16 @@ const FormPage = () => {
         { label: 'Šeimyninė padėtis', type: 'text', name: 'maritalStatus', value: '', required: false },
     ];
     const addDataHandler = (data) => {
-        console.log(experience)
-        const combinedData = { ...data, experience: experience };
-        console.log(combinedData)
+        const combinedData = { ...data, experience: experience, education: education };
         localStorage.setItem("data", JSON.stringify(combinedData));
         navigate(`/`);
     };
     const addExperience = (data) => {
         setExperience(data)
+    }
+    const addEducation = (data) => {
+        console.log(data)
+        setEducation(data)
     }
 
     return (
@@ -46,6 +50,7 @@ const FormPage = () => {
                     newData={edit ? storedData : ""}
                 />
                 <ExperienceInput onExperience={addExperience} />
+                <EducationInput onEducation={addEducation} />
             </div>
         </Container>
     )

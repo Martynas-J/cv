@@ -52,7 +52,7 @@ const ExperienceInput = ({ onExperience }) => {
                 </ul>
                 : ""}
 
-            <h2 className="page-title">Patirtis</h2>
+            <h2 className="page-title">Darbo patirtis</h2>
             <UniversalForm
                 inputs={inputs}
                 onAddData={addDataHandler}
