@@ -53,8 +53,8 @@ const SkillsInput = ({ onSkills }) => {
                     {skills.map((item, index) =>
                         <li key={index}>
                             <span>{item.title} {item.lvl} Lygis</span>
-                            <button onClick={() => editHandler(index)}>Keisti</button>
-                            <button onClick={() => deleteHandler(index)}>X</button>
+                            <button className='modify-button' onClick={() => editHandler(index)}>Keisti</button>
+                            <button className='modify-button' onClick={() => deleteHandler(index)}>X</button>
                         </li>
                     )}
                 </ul>

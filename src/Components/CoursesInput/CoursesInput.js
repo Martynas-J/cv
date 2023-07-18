@@ -56,8 +56,8 @@ const CoursesInput = ({ onCourses }) => {
                         <li key={index}>
                             <span>{item.name} {item.institution} {item.startDate} - {item.endDate} </span>
 
-                            <button onClick={() => editHandler(index)}>Keisti</button>
-                            <button onClick={() => deleteHandler(index)}>X</button>
+                            <button className='modify-button' onClick={() => editHandler(index)}>Keisti</button>
+                            <button className='modify-button' onClick={() => deleteHandler(index)}>X</button>
                         </li>
                     )}
                 </ul>

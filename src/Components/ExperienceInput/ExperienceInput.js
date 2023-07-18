@@ -50,8 +50,8 @@ const ExperienceInput = ({ onExperience }) => {
                     {experience.map((item, index) =>
                         <li key={index}>
                             {item}
-                            <button onClick={() => editHandler(index)}>Keisti</button>
-                            <button onClick={() => deleteHandler(index)}>X</button>
+                            <button className='modify-button' onClick={() => editHandler(index)}>Keisti</button>
+                            <button className='modify-button' onClick={() => deleteHandler(index)}>X</button>
                         </li>
                     )}
                 </ul>

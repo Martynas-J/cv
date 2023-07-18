@@ -58,8 +58,8 @@ const EducationInput = ({ onEducation }) => {
                             <span className="bold">{item.title}</span>
                             {item.place}, {item.institution} {item.year}
                             <p>{item.describe}</p>
-                            <button onClick={() => editHandler(index)}>Keisti</button>
-                            <button onClick={() => deleteHandler(index)}>X</button>
+                            <button className='modify-button' onClick={() => editHandler(index)}>Keisti</button>
+                            <button className='modify-button' onClick={() => deleteHandler(index)}>X</button>
                         </li>
                     )}
                 </ul>
