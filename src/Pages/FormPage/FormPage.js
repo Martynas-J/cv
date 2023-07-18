@@ -48,7 +48,7 @@ const FormPage = () => {
     const addCourses = (data) => {
         setCourses(data)
     }
-    const addLinks= (data) => {
+    const addLinks = (data) => {
         setLinks(data)
     }
 

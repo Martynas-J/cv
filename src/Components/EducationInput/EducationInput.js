@@ -3,6 +3,7 @@ import UniversalForm from '../Form/UniversalForm';
 
 const EducationInput = ({ onEducation }) => {
     const [editEducation, setEditEducation] = useState("")
+    const [isHidden, setIsHidden] = useState(true)
 
     const localStorageData = JSON.parse(localStorage.getItem("data")) || ""
     const [education, setEducation] = useState(localStorageData.education ? localStorageData.education : "")
@@ -43,10 +44,13 @@ const EducationInput = ({ onEducation }) => {
         const editEducation = education.find((item, i) => i === index);
         setEditEducation({ ...editEducation, index });
     };
+    const isHiddenHandler = () => {
+        setIsHidden(!isHidden)
+    }
 
     return (
         <div className="form-inside-wrapper">
-            {education ?
+            {!isHidden && education ?
                 <ul>
                     {education.map((item, index) =>
                         <li key={index}>
@@ -59,13 +63,14 @@ const EducationInput = ({ onEducation }) => {
                     )}
                 </ul>
                 : ""}
-
-            <h2 className="page-title">Išsilavinimas</h2>
-            <UniversalForm
-                inputs={inputs}
-                onAddData={addDataHandler}
-                newData={editEducation}
-            />
+            <button onClick={isHiddenHandler} className="page-title">Išsilavinimas </button>
+            {!isHidden ?
+                <UniversalForm
+                    inputs={inputs}
+                    onAddData={addDataHandler}
+                    newData={editEducation}
+                />
+                : ""}
         </div>
     )
 }

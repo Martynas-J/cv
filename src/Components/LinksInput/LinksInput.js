@@ -3,6 +3,7 @@ import UniversalForm from '../Form/UniversalForm';
 
 const LinksInput = ({ onLinks }) => {
     const [editLinks, setEditLinks] = useState("")
+    const [isHidden, setIsHidden] = useState(true)
 
     const localStorageData = JSON.parse(localStorage.getItem("data")) || ""
     const [links, setLinks] = useState(localStorageData.links ? localStorageData.links : "")
@@ -40,10 +41,13 @@ const LinksInput = ({ onLinks }) => {
         const editLinks = links.find((item, i) => i === index);
         setEditLinks({ ...editLinks, index });
     };
+    const isHiddenHandler = () => {
+        setIsHidden(!isHidden)
+    }
 
     return (
         <div className="form-inside-wrapper">
-            {links ?
+            {!isHidden && links ?
                 <ul>
                     {links.map((item, index) =>
                         <li key={index}>
@@ -55,12 +59,15 @@ const LinksInput = ({ onLinks }) => {
                 </ul>
                 : ""}
 
-            <h2 className="page-title">Nuorodos </h2>
-            <UniversalForm
-                inputs={inputs}
-                onAddData={addDataHandler}
-                newData={editLinks}
-            />
+            <button onClick={isHiddenHandler} className="page-title">Nuorodos </button>
+            {!isHidden ?
+                <UniversalForm
+                    inputs={inputs}
+                    onAddData={addDataHandler}
+                    newData={editLinks}
+                />
+                : ""}
+
         </div>
     )
 }

@@ -3,6 +3,7 @@ import UniversalForm from '../Form/UniversalForm';
 
 const SkillsInput = ({ onSkills }) => {
     const [editSkills, setEditSkills] = useState("")
+    const [isHidden, setIsHidden] = useState(true)
 
     const localStorageData = JSON.parse(localStorage.getItem("data")) || ""
     const [skills, setSkills] = useState(localStorageData.skills ? localStorageData.skills : "")
@@ -40,10 +41,13 @@ const SkillsInput = ({ onSkills }) => {
         const editSkills = skills.find((item, i) => i === index);
         setEditSkills({ ...editSkills, index });
     };
+    const isHiddenHandler = () => {
+        setIsHidden(!isHidden)
+    }
 
     return (
         <div className="form-inside-wrapper">
-            {skills ?
+            {!isHidden && skills ?
                 <ul>
                     {skills.map((item, index) =>
                         <li key={index}>
@@ -55,12 +59,14 @@ const SkillsInput = ({ onSkills }) => {
                 </ul>
                 : ""}
 
-            <h2 className="page-title">ĮGUDŽIAI </h2>
-            <UniversalForm
-                inputs={inputs}
-                onAddData={addDataHandler}
-                newData={editSkills}
-            />
+            <button onClick={isHiddenHandler} className="page-title">Įgudžiai </button>
+            {!isHidden ?
+                <UniversalForm
+                    inputs={inputs}
+                    onAddData={addDataHandler}
+                    newData={editSkills}
+                />
+                : ""}
         </div>
     )
 }

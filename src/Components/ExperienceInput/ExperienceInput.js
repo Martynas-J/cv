@@ -3,6 +3,7 @@ import UniversalForm from '../Form/UniversalForm';
 
 const ExperienceInput = ({ onExperience }) => {
     const [editExperience, setEditExperience] = useState()
+    const [isHidden, setIsHidden] = useState(true)
 
     const localStorageData = JSON.parse(localStorage.getItem("data")) || ""
     const [experience, setExperience] = useState(localStorageData.experience ? localStorageData.experience : "")
@@ -37,10 +38,13 @@ const ExperienceInput = ({ onExperience }) => {
         const editExperience = experience.find((item, i) => i === index);
         setEditExperience({ experience: editExperience, index });
     };
+    const isHiddenHandler = () => {
+        setIsHidden(!isHidden)
+    }
 
     return (
         <div className="form-inside-wrapper">
-            {experience ?
+            {!isHidden && experience ?
                 <ul>
                     {experience.map((item, index) =>
                         <li key={index}>
@@ -51,13 +55,14 @@ const ExperienceInput = ({ onExperience }) => {
                     )}
                 </ul>
                 : ""}
-
-            <h2 className="page-title">Darbo patirtis</h2>
-            <UniversalForm
-                inputs={inputs}
-                onAddData={addDataHandler}
-                newData={editExperience}
-            />
+            <button onClick={isHiddenHandler} className="page-title">Darbo patirtis </button>
+            {!isHidden ?
+                <UniversalForm
+                    inputs={inputs}
+                    onAddData={addDataHandler}
+                    newData={editExperience}
+                />
+                : ""}
         </div>
     )
 }
