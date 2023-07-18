@@ -1,9 +1,18 @@
 @use "../Components/Elements/responsive.scss";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 body {
-  .form-inside-wrapper{
-    padding-left: 50px;
-    font-size: 14px;
+  .form-inside-wrapper {
+    box-shadow: 3px 2px 8px black;
+    padding: 10px;
+    .modify-button{
+      background-color: rgb(48, 161, 161);
+      font-size: 14px;
+      padding: 3px 10px;
+      margin: 2px 2px;
+      &:hover{
+        background-color: rgb(107, 209, 175);
+      }
+    }
   }
   .pdf-control-wrapper {
     display: flex;

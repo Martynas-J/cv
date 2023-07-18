@@ -1,6 +1,6 @@
 import UniversalForm from "../../Components/Form/UniversalForm"
 import Container from "../../Components/Container/Container";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ExperienceInput from "../../Components/ExperienceInput/ExperienceInput";
 import { useState } from "react";
 import EducationInput from "../../Components/EducationInput/EducationInput";
@@ -61,6 +61,7 @@ const FormPage = () => {
                     onAddData={addDataHandler}
                     newData={edit ? storedData : ""}
                 />
+                <Link className="hidden-button" to={"/"}>Atgal</Link>
                 <LinksInput onLinks={addLinks} />
                 <ExperienceInput onExperience={addExperience} />
                 <EducationInput onEducation={addEducation} />

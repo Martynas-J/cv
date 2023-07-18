@@ -47,19 +47,20 @@ const LinksInput = ({ onLinks }) => {
 
     return (
         <div className="form-inside-wrapper">
+            <button onClick={isHiddenHandler} className="hidden-button">Nuorodos </button>
             {!isHidden && links ?
                 <ul>
                     {links.map((item, index) =>
                         <li key={index}>
-                            <span>{item.name} {item.url}</span>
-                            <button onClick={() => editHandler(index)}>Keisti</button>
-                            <button onClick={() => deleteHandler(index)}>X</button>
+                            <span>{item.name} {item.url}
+                                <button className='modify-button' onClick={() => editHandler(index)}>Keisti</button>
+                                <button className='modify-button' onClick={() => deleteHandler(index)}>X</button></span>
                         </li>
                     )}
                 </ul>
                 : ""}
 
-            <button onClick={isHiddenHandler} className="page-title">Nuorodos </button>
+
             {!isHidden ?
                 <UniversalForm
                     inputs={inputs}

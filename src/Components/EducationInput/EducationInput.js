@@ -50,6 +50,7 @@ const EducationInput = ({ onEducation }) => {
 
     return (
         <div className="form-inside-wrapper">
+            <button onClick={isHiddenHandler} className="hidden-button">Išsilavinimas </button>
             {!isHidden && education ?
                 <ul>
                     {education.map((item, index) =>
@@ -63,7 +64,6 @@ const EducationInput = ({ onEducation }) => {
                     )}
                 </ul>
                 : ""}
-            <button onClick={isHiddenHandler} className="page-title">Išsilavinimas </button>
             {!isHidden ?
                 <UniversalForm
                     inputs={inputs}

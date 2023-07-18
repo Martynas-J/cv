@@ -44,6 +44,7 @@ const ExperienceInput = ({ onExperience }) => {
 
     return (
         <div className="form-inside-wrapper">
+            <button onClick={isHiddenHandler} className="hidden-button">Darbo patirtis </button>
             {!isHidden && experience ?
                 <ul>
                     {experience.map((item, index) =>
@@ -55,7 +56,6 @@ const ExperienceInput = ({ onExperience }) => {
                     )}
                 </ul>
                 : ""}
-            <button onClick={isHiddenHandler} className="page-title">Darbo patirtis </button>
             {!isHidden ?
                 <UniversalForm
                     inputs={inputs}

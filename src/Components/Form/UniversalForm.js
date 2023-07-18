@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 const UniversalForm = ({ inputs, onAddData, newData }) => {
     const [formValues, setFormValues] = useState({});
     const [errors, setErrors] = useState({});
-    const [buttonText, setButtonText] = useState("Add");
+    const [buttonText, setButtonText] = useState("Pridėti");
 
     useEffect(() => {
         if (newData) {
-            setButtonText("Save");
+            setButtonText("Išsaugoti");
             Object.keys(newData).forEach((key) => {
                 setFormValues((prevValues) => ({ ...prevValues, [key]: newData[key] }));
             });
@@ -36,7 +36,7 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
             setFormValues({});
             setErrors({});
             onAddData(formValues);
-            setButtonText("Add");
+            setButtonText("Pridėti");
         }
     };
 
@@ -95,7 +95,7 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
                     );
                 })}
                 <button type="submit">{buttonText}</button>
-                <Link to={"/"}>Atgal</Link>
+
             </form>
         </div>
     );
