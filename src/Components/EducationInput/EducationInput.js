@@ -43,9 +43,7 @@ const EducationInput = ({ onEducation }) => {
         const editEducation = education.find((item, i) => i === index);
         setEditEducation({ ...editEducation, index });
     };
-    
-    console.log(editEducation)
-    
+
     return (
         <div className="form-inside-wrapper">
             {education ?

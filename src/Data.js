@@ -40,23 +40,23 @@ export const CV_DATA = {
     skills: [
         {
             title: "HTML",
-            lvl: 6,
+            lvl: 5,
         },
         {
             title: "CSS",
-            lvl: 6,
+            lvl: 5,
         },
         {
             title: "SCSS",
-            lvl: 6,
+            lvl: 5,
         },
         {
             title: "JavaScript",
-            lvl: 5,
+            lvl: 4,
         },
         {
             title: "REACT",
-            lvl: 5,
+            lvl: 4,
         },
     ],
     courses: [

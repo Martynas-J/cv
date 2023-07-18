@@ -9,10 +9,10 @@ const FormPage = () => {
     const { edit } = useParams()
     const navigate = useNavigate()
 
-    const [experience, setExperience] = useState([])
-    const [education, setEducation] = useState([])
-
     const storedData = JSON.parse(localStorage.getItem("data"));
+    const [experience, setExperience] = useState(storedData.experience)
+    const [education, setEducation] = useState(storedData.education)
+
     const inputs = [
         { type: 'text', name: 'name', label: 'Vardas ir pavarde', value: '', required: true },
         { type: 'text', name: 'phone', label: 'Telefonas', value: '', required: false },
@@ -28,16 +28,21 @@ const FormPage = () => {
         { label: 'Šeimyninė padėtis', type: 'text', name: 'maritalStatus', value: '', required: false },
     ];
     const addDataHandler = (data) => {
+        console.log(experience)
+        console.log(education)
         const combinedData = { ...data, experience: experience, education: education };
         localStorage.setItem("data", JSON.stringify(combinedData));
         navigate(`/`);
     };
     const addExperience = (data) => {
-        setExperience(data)
+        if (data !== undefined) {
+            setExperience(data)
+        }
     }
     const addEducation = (data) => {
-        console.log(data)
-        setEducation(data)
+        if (data !== undefined) {
+            setEducation(data)
+        }
     }
 
     return (
