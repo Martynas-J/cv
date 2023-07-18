@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Formik.scss";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 
 const UniversalForm = ({ inputs, onAddData, newData }) => {
     const [formValues, setFormValues] = useState({});

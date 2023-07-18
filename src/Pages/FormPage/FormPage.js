@@ -20,7 +20,7 @@ const FormPage = () => {
     const [links, setLinks] = useState(storedData ? storedData.links : "")
 
     const inputs = [
-        { type: 'text', name: 'name', label: 'Vardas ir pavarde', value: '', required: true },
+        { type: 'text', name: 'name', label: 'Vardas ir pavardė', value: '', required: true },
         { type: 'text', name: 'phone', label: 'Telefonas', value: '', required: false },
         { type: 'email', name: 'email', label: 'El. Paštas', value: '', required: false },
         { type: 'text', name: 'address', label: 'Adresas', value: '', required: false },
