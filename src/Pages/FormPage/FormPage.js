@@ -61,7 +61,7 @@ const FormPage = () => {
                     onAddData={addDataHandler}
                     newData={edit ? storedData : ""}
                 />
-                <Link className="hidden-button" to={"/"}>Atgal</Link>
+                <Link to={"/"}>Atgal</Link>
                 <LinksInput onLinks={addLinks} />
                 <ExperienceInput onExperience={addExperience} />
                 <EducationInput onEducation={addEducation} />

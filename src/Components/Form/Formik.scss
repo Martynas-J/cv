@@ -3,6 +3,7 @@
     color: #08c;
     display: block;
     margin-bottom: 30px;
+    text-decoration: none;
   }
   input,
   select {
@@ -70,11 +71,13 @@
       background-color: unset;
       margin: 10px 0;
       font-weight: 600;
+      font-size: 18px;
       max-width: unset;
       width: 100%;
       box-shadow: unset;
       transition-property: color;
       transition-duration: 0.5s;
+      border-bottom: 1px solid black;
       &:hover {
         color: #08c;
       }
