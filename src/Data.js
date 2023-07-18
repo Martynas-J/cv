@@ -1,7 +1,7 @@
 export const CV_DATA = {
     name: "Martynas Janušauskas",
     phone: "+3706*******",
-    email: "janusauskas.martynas1@gmail.com",
+    email: "El@Paštas.com",
     address: "Jūsu adresas",
     aboutMe: "Esu pareigingas, sąžiningas, nuoširdus, tvarkingas. Sugebu greitai perprasti naujas užduotis. Moku dirbti ir komandoje, ir individualiai.",
     links: [
