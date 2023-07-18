@@ -4,14 +4,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import ExperienceInput from "../../Components/ExperienceInput/ExperienceInput";
 import { useState } from "react";
 import EducationInput from "../../Components/EducationInput/EducationInput";
+import SkillsInput from "../../Components/SkillsInput/SkillsInput";
+import CoursesInput from "../../Components/CoursesInput/CoursesInput";
+import LinksInput from "../../Components/LinksInput/LinksInput";
 
 const FormPage = () => {
     const { edit } = useParams()
     const navigate = useNavigate()
 
     const storedData = JSON.parse(localStorage.getItem("data"));
-    const [experience, setExperience] = useState(storedData.experience)
-    const [education, setEducation] = useState(storedData.education)
+    const [experience, setExperience] = useState(storedData ? storedData.experience : "")
+    const [education, setEducation] = useState(storedData ? storedData.education : "")
+    const [skills, setSkills] = useState(storedData ? storedData.skills : "")
+    const [courses, setCourses] = useState(storedData ? storedData.courses : "")
+    const [links, setLinks] = useState(storedData ? storedData.links : "")
 
     const inputs = [
         { type: 'text', name: 'name', label: 'Vardas ir pavarde', value: '', required: true },
@@ -19,8 +25,6 @@ const FormPage = () => {
         { type: 'email', name: 'email', label: 'El. Paštas', value: '', required: false },
         { type: 'text', name: 'address', label: 'Adresas', value: '', required: false },
         { type: 'textarea', name: 'aboutMe', label: 'Apie mane', cols: 40, rows: 5, value: '', required: false },
-        { label: 'Nuorodos pavadinimas', type: 'text', name: 'links.name', value: '', required: false },
-        { label: 'Nuorodos linkas', type: 'url', name: 'links.url', value: '', required: false },
         { label: 'Pomėgiai', type: 'text', name: 'hobbies', value: '', required: false },
         { label: 'Vairuotojo pažymėjimo kategorijos', type: 'text', name: 'driverLicenses', value: '', required: false },
         { label: 'Gimimo data', type: 'text', name: 'birthday', value: '', required: false },
@@ -28,21 +32,24 @@ const FormPage = () => {
         { label: 'Šeimyninė padėtis', type: 'text', name: 'maritalStatus', value: '', required: false },
     ];
     const addDataHandler = (data) => {
-        console.log(experience)
-        console.log(education)
-        const combinedData = { ...data, experience: experience, education: education };
+        const combinedData = { ...data, experience, education, skills, courses, links };
         localStorage.setItem("data", JSON.stringify(combinedData));
         navigate(`/`);
     };
     const addExperience = (data) => {
-        if (data !== undefined) {
-            setExperience(data)
-        }
+        setExperience(data)
     }
     const addEducation = (data) => {
-        if (data !== undefined) {
-            setEducation(data)
-        }
+        setEducation(data)
+    }
+    const addSkills = (data) => {
+        setSkills(data)
+    }
+    const addCourses = (data) => {
+        setCourses(data)
+    }
+    const addLinks= (data) => {
+        setLinks(data)
     }
 
     return (
@@ -54,8 +61,11 @@ const FormPage = () => {
                     onAddData={addDataHandler}
                     newData={edit ? storedData : ""}
                 />
+                <LinksInput onLinks={addLinks} />
                 <ExperienceInput onExperience={addExperience} />
                 <EducationInput onEducation={addEducation} />
+                <SkillsInput onSkills={addSkills} />
+                <CoursesInput onCourses={addCourses} />
             </div>
         </Container>
     )

@@ -44,7 +44,7 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
         <div className="form">
             <form onSubmit={handleSubmit}>
                 {inputs.map((input, index) => {
-                    const { type, name, label, options, required, cols, rows } = input;
+                    const { type, name, label, options, required, cols, rows, min, max } = input;
                     return (
                         <div key={index}>
                             <label htmlFor={name} className={errors[name] ? "textErr" : ""}>
@@ -82,6 +82,8 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
                                     type={type}
                                     name={name}
                                     id={name}
+                                    min={min}
+                                    max={max}
                                     onChange={handleChange}
                                     value={formValues[name] || ""}
                                     required={required}
