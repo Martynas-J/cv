@@ -78,6 +78,7 @@
       transition-property: color;
       transition-duration: 0.5s;
       border-bottom: 1px solid black;
+      border-radius: unset;
       &:hover {
         color: #08c;
       }

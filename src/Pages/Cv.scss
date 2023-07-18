@@ -3,29 +3,28 @@
 body {
   .form-wrapper {
     padding-bottom: 50px;
-  }
-  .form-inside-wrapper {
-    transition-property: background-color;
-    transition-duration: 0.5s;
-    &:hover {
-      background-color: rgba(207, 233, 255, 0.39);
+    .form-inside-wrapper {
+      transition-property: color;
+      transition-duration: 0.5s;
+      &:hover {
+        background-color: rgba(207, 233, 255, 0.39);
+      }
+      ul {
+        list-style: none;
+      }
+      box-shadow: 3px 2px 8px black;
+      padding: 10px;
+      .modify-button {
+        background-color: rgb(48, 161, 161);
+        font-size: 14px;
+        padding: 3px 10px;
+        margin: 2px 2px;
+        &:hover {
+          background-color: rgb(107, 209, 175);
+        }
+      }
     }
   }
-  ul {
-    list-style: none;
-  }
-  box-shadow: 3px 2px 8px black;
-  padding: 10px;
-  .modify-button {
-    background-color: rgb(48, 161, 161);
-    font-size: 14px;
-    padding: 3px 10px;
-    margin: 2px 2px;
-    &:hover {
-      background-color: rgb(107, 209, 175);
-    }
-  }
-
   .pdf-control-wrapper {
     display: flex;
     justify-content: center;
@@ -56,7 +55,6 @@ body {
     top: 100px;
     height: 100%;
     width: 84%;
-
     background-color: rgb(202, 202, 202);
     .pdf-viewer-exit {
       background-color: unset;
