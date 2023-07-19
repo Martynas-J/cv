@@ -35,6 +35,16 @@ body {
     @include responsive.mob580 {
       font-size: 8px;
     }
+    .hidden-input {
+      display: none;
+    }
+    .img-btn {
+      color: white;
+      &:hover {
+        cursor: pointer;
+        color: rgb(201, 199, 199);
+      }
+    }
     .color-input {
       inline-size: 30px;
       padding: 0;
@@ -111,17 +121,28 @@ body {
     }
   }
   header {
-    text-align: center;
-    padding: 60px 0;
-    // background-color: black;
-    // color: white;
-    text-transform: uppercase;
-    font-size: 40px;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    letter-spacing: 7px;
-    @include responsive.mob580 {
-      font-size: 25px;
-      padding: 50px 10px;
+    display: grid;
+    grid-template-columns: 1.5fr 5fr;
+    justify-items: center;
+    align-items: center;
+    .small-photo {
+      object-fit: cover;
+      width: 140px;
+      height: 140px;
+      border-radius: 80px;
+    }
+    .name {
+      margin: 0;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 40px;
+      letter-spacing: 7px;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      padding: 60px 0;
+      @include responsive.mob580 {
+        font-size: 25px;
+        padding: 50px 10px;
+      }
     }
   }
   .wrapper {

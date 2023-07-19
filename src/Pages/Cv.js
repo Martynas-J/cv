@@ -13,6 +13,7 @@ function Cv() {
 
   const [headerBackgroundColor, setheaderBackgroundColor] = useState('#000000')
   const [headerColor, setheaderColor] = useState('#ffffff')
+  const [profilePhoto, setProfilePhoto] = useState(null);
 
   const [storedData, setStoredData] = useState(JSON.parse(localStorage.getItem("data")));
   const [pdfReady, setPdfReady] = useState(false);
@@ -135,11 +136,13 @@ function Cv() {
   const editHandler = () => {
     navigate(`/form/edit`);
   };
-
+  const selectPhotoHandler = e => setProfilePhoto(e.target.files[0]);
   return (
     <>
       <Container>
         <div className='pdf-control-wrapper'>
+          <label for="profilePhoto" className="img-btn">Pasirinkti Nuotrauka</label>
+          <input className='hidden-input' type="file"  id="profilePhoto" name="profilePhoto"  onChange={selectPhotoHandler} />
           <button className='button' onClick={FormHandler}>Įvesti naujus duomenis</button>
           <button className='button' onClick={deleteHandler}>Ištrinti duomenis</button>
           <button className='button' onClick={editHandler}>Keisti duomenis</button>
@@ -164,7 +167,9 @@ function Cv() {
           <input className='color-input' id='headerColor' type='color' value={headerColor} onChange={(e) => setheaderColor(e.target.value)}></input>
         </div>
         <header style={{ background: headerBackgroundColor, color: headerColor }}>
-          {name}
+          {profilePhoto ? <img className='small-photo' src={URL.createObjectURL(profilePhoto)} alt="Profilio nuotrauka" />
+          : <div className='small-photo'/>}
+          <h1 className='name'>{name}</h1>
         </header>
         <div className="wrapper">
           <aside className="sidebar-content">
