@@ -141,8 +141,8 @@ function Cv() {
     <>
       <Container>
         <div className='pdf-control-wrapper'>
-          <label for="profilePhoto" className="img-btn">Pasirinkti Nuotrauka</label>
-          <input className='hidden-input' type="file"  id="profilePhoto" name="profilePhoto"  onChange={selectPhotoHandler} />
+          <label htmlFor="profilePhoto" className="img-btn">Pasirinkti Nuotrauka</label>
+          <input className='hidden-input' type="file" id="profilePhoto" name="profilePhoto" onChange={selectPhotoHandler} />
           <button className='button' onClick={FormHandler}>Įvesti naujus duomenis</button>
           <button className='button' onClick={deleteHandler}>Ištrinti duomenis</button>
           <button className='button' onClick={editHandler}>Keisti duomenis</button>
@@ -151,14 +151,14 @@ function Cv() {
             <div className='pdf-viewer'>
               <button className="pdf-viewer-exit" onClick={() => setPdfReady(false)}> X</button>
               <PDFViewer >
-                <MyDocument colors={{ headerBackgroundColor, headerColor }} data={storedData || CV_DATA} />
+                <MyDocument profilePhoto={profilePhoto} colors={{ headerBackgroundColor, headerColor }} data={storedData || CV_DATA} />
               </PDFViewer>
             </div>
           ) : (
             <button className='button' onClick={handlePdfGenerate}>Generuoti PDF</button>
           )}
 
-          <PDFDownloadLink document={<MyDocument colors={{ headerBackgroundColor, headerColor }} data={storedData || CV_DATA} />} fileName="cv.pdf">
+          <PDFDownloadLink document={<MyDocument profilePhoto={profilePhoto} colors={{ headerBackgroundColor, headerColor }} data={storedData || CV_DATA} />} fileName="cv.pdf">
             {({ blob, url, loading, error }) =>
               loading ? 'Kraunama...' : 'Parsisiųsti PDF'
             }
@@ -168,7 +168,7 @@ function Cv() {
         </div>
         <header style={{ background: headerBackgroundColor, color: headerColor }}>
           {profilePhoto ? <img className='small-photo' src={URL.createObjectURL(profilePhoto)} alt="Profilio nuotrauka" />
-          : <div className='small-photo'/>}
+            : <div className='empty' />}
           <h1 className='name'>{name}</h1>
         </header>
         <div className="wrapper">

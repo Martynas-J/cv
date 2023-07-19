@@ -4,6 +4,20 @@ const styles = StyleSheet.create({
     page: {
         backgroundColor: '#fff',
     },
+    smallPhoto: {
+        objectFit: 'cover',
+        width: 90,
+        height: 90,
+        borderRadius: 80,
+    },
+    userNameContainer: {
+        display: 'flex',
+        paddingLeft: 10,
+        flexDirection: 'row',
+        justifyContent: "center",
+        alignItems: 'center',
+        columnGap: 40,
+    },
     wrapper: {
         display: 'flex',
         flexDirection: 'row',
@@ -42,8 +56,6 @@ const styles = StyleSheet.create({
         fontWeight: 800,
         textTransform: 'uppercase',
         fontFamily: 'Bold',
-        // backgroundColor: 'black',
-        // color: 'white',
         textAlign: 'center',
         padding: '35px 0',
         letterSpacing: '7px',

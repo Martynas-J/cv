@@ -1,4 +1,4 @@
-import { Page, Text, View, Document } from '@react-pdf/renderer';
+import { Page, Text, View, Document, Image } from '@react-pdf/renderer';
 import Bold from "../Elements/AbhayaLibre-Bold.ttf"
 import Regular from "../Elements/AbhayaLibre-Regular.ttf"
 import { Font } from '@react-pdf/renderer';
@@ -15,7 +15,7 @@ import SkillsElement from '../SkillsElement/SkillsElement';
 import CoursesElement from '../CoursesElement/CoursesElement';
 
 
-const MyDocument = ({ data, colors }) => {
+const MyDocument = ({ data, colors, profilePhoto }) => {
     Font.register({ family: 'Bold', src: Bold });
     Font.register({ family: 'Regular', src: Regular });
     const { name, phone, email, address, aboutMe, links, hobbies, driverLicenses, birthday, nationality, maritalStatus, experience, education, skills, courses } = data
@@ -23,9 +23,13 @@ const MyDocument = ({ data, colors }) => {
     return (
         <Document>
             <Page size="A4" style={styles.page}>
-                <Text style={[styles.userName, { backgroundColor: headerBackgroundColor, color: headerColor }]}>{name}</Text>
+                <View style={[styles.userNameContainer, { backgroundColor: headerBackgroundColor, color: headerColor }]}>
+                    {profilePhoto && <Image style={styles.smallPhoto} src={URL.createObjectURL(profilePhoto)} />}
+                    <Text style={styles.userName}>
+                        {name}
+                    </Text>
+                </View>
                 <View style={styles.wrapper}>
-
                     <View style={styles.leftSection}>
                         {phone || email || address ? < ContactsElement contactsData={{ phone, email, address }} /> : ""}
                         {aboutMe && <AboutMeElement aboutMe={aboutMe} />}
