@@ -21,11 +21,13 @@ const styles = StyleSheet.create({
     wrapper: {
         display: 'flex',
         flexDirection: 'row',
+        flexGrow: 1,
     },
     leftSection: {
         backgroundColor: 'rgb(224, 224, 224)',
         flex: 1,
         padding: 20,
+        flexGrow: 1,
     },
     RightSection: {
         backgroundColor: 'white',
