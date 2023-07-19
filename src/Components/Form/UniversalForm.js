@@ -18,25 +18,17 @@ const UniversalForm = ({ inputs, onAddData, newData }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (!value || value.trim() === "") {
-            setErrors((prevErrors) => ({ ...prevErrors, [name]: "Invalid" }));
-        } else {
-            setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
-        }
+
         setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const hasErrors = Object.values(errors).some((error) => error !== "");
-        if (hasErrors) {
-            toast.error("Empty or incorrect input", { autoClose: 5000 });
-        } else {
             setFormValues({});
             setErrors({});
             onAddData(formValues);
             setButtonText("Pridėti");
-        }
+
     };
 
     return (
