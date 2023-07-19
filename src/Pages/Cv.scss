@@ -127,6 +127,7 @@ body {
     grid-template-columns: 1.5fr 5fr;
     justify-items: center;
     align-items: center;
+    padding-left: 10px;
     @include responsive.mob580 {
       display: flex;
       flex-direction: column;
@@ -137,7 +138,6 @@ body {
       width: 140px;
       height: 140px;
       border-radius: 80px;
-      padding-left: 10px;
     }
     .name {
       margin: 0;
