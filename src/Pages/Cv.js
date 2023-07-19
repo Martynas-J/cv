@@ -11,6 +11,9 @@ import MyDocument from '../Components/MyDocument/MyDocument';
 
 function Cv() {
 
+  const [headerBackgroundColor, setheaderBackgroundColor] = useState('#000000')
+  const [headerColor, setheaderColor] = useState('#ffffff')
+
   const [storedData, setStoredData] = useState(JSON.parse(localStorage.getItem("data")));
   const [pdfReady, setPdfReady] = useState(false);
 
@@ -145,21 +148,22 @@ function Cv() {
             <div className='pdf-viewer'>
               <button className="pdf-viewer-exit" onClick={() => setPdfReady(false)}> X</button>
               <PDFViewer >
-                <MyDocument data={storedData || CV_DATA} />
+                <MyDocument colors={{ headerBackgroundColor, headerColor }} data={storedData || CV_DATA} />
               </PDFViewer>
             </div>
           ) : (
             <button className='button' onClick={handlePdfGenerate}>Generuoti PDF</button>
           )}
 
-          <PDFDownloadLink document={<MyDocument data={storedData || CV_DATA} />} fileName="cv.pdf">
+          <PDFDownloadLink document={<MyDocument colors={{ headerBackgroundColor, headerColor }} data={storedData || CV_DATA} />} fileName="cv.pdf">
             {({ blob, url, loading, error }) =>
               loading ? 'Kraunama...' : 'Parsisiųsti PDF'
             }
           </PDFDownloadLink>
+          <input className='color-input' id='headerBackgroundColor' value={headerBackgroundColor} type='color' onChange={(e) => setheaderBackgroundColor(e.target.value)}></input>
+          <input className='color-input' id='headerColor' type='color' value={headerColor} onChange={(e) => setheaderColor(e.target.value)}></input>
         </div>
-        <header>
-
+        <header style={{ background: headerBackgroundColor, color: headerColor }}>
           {name}
         </header>
         <div className="wrapper">

@@ -15,15 +15,15 @@ import SkillsElement from '../SkillsElement/SkillsElement';
 import CoursesElement from '../CoursesElement/CoursesElement';
 
 
-const MyDocument = ({ data }) => {
+const MyDocument = ({ data, colors }) => {
     Font.register({ family: 'Bold', src: Bold });
     Font.register({ family: 'Regular', src: Regular });
     const { name, phone, email, address, aboutMe, links, hobbies, driverLicenses, birthday, nationality, maritalStatus, experience, education, skills, courses } = data
-
+    const { headerBackgroundColor, headerColor } = colors
     return (
         <Document>
             <Page size="A4" style={styles.page}>
-                <Text style={styles.userName}>{name}</Text>
+                <Text style={[styles.userName, { backgroundColor: headerBackgroundColor, color: headerColor }]}>{name}</Text>
                 <View style={styles.wrapper}>
 
                     <View style={styles.leftSection}>
