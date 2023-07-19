@@ -56,11 +56,25 @@ body {
     top: 100px;
     height: 100%;
     width: 84%;
-    background-color: rgb(202, 202, 202);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
     .pdf-viewer-exit {
       background-color: unset;
-      border-radius: 5px;
-      color: red;
+      border: unset;
+      border-radius: 25px;
+      color: rgb(122, 18, 18);
+      font-size: 24px;
+      box-shadow: inset 1px 1px 6px 0px rgba(0, 0, 0, 0.295);
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(134, 146, 156, 0.562);
+        color: rgb(196, 0, 0);
+      }
     }
   }
   .bold {

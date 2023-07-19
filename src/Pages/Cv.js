@@ -144,7 +144,7 @@ function Cv() {
           {pdfReady ? (
             <div className='pdf-viewer'>
               <button className="pdf-viewer-exit" onClick={() => setPdfReady(false)}> X</button>
-              <PDFViewer width={"100%"} height={"100%"}>
+              <PDFViewer >
                 <MyDocument data={storedData || CV_DATA} />
               </PDFViewer>
             </div>
