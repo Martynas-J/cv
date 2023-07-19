@@ -34,6 +34,7 @@ body {
     padding: 10px;
     @include responsive.mob580 {
       font-size: 8px;
+      gap: 2px;
     }
     .hidden-input {
       display: none;
@@ -67,6 +68,7 @@ body {
       }
       @include responsive.mob580 {
         font-size: 8px;
+        padding: 2px 4px;
       }
       &:hover {
         cursor: pointer;
@@ -135,6 +137,7 @@ body {
       width: 140px;
       height: 140px;
       border-radius: 80px;
+      padding-left: 10px;
     }
     .name {
       margin: 0;
